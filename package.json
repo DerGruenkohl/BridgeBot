@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "license": "GPL-3.0",
   "scripts": {
-    "dev": "nodemon --watch src -e ts,json --exec tsx -r ./src/main.ts ",
-    "prod": "tsx -r ./src/main.ts"
+    "runDc": "nodemon --watch src -e ts,json --exec tsx -r ./src/discord/runBot.ts",
+    "runMc": "nodemon --watch src -e ts,json --exec tsx -r ./src/mc/runMc.ts",
+    "dev": "nodemon --watch src -e ts,json --exec tsx -r ./src/main.ts "
   },
   "devDependencies": {
     "prettier": "^3.3.1",

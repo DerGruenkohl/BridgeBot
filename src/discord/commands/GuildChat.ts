@@ -1,5 +1,5 @@
-import { commandsHandler } from '../runBot.ts';
-import { ApplicationCommandOptionType, EmbedBuilder } from 'discord.js';
+import { client, commandsHandler } from '../runBot.ts';
+import { ApplicationCommandOptionType, EmbedBuilder, GuildMember } from 'discord.js';
 import { bot } from '../../mc/runMc.ts';
 
 export default new commandsHandler.command({
@@ -29,6 +29,12 @@ export default new commandsHandler.command({
     })
 
     const message = interaction.options.getString("msg")
+    const author: GuildMember = interaction.member
+
+    const name = author.displayName
+
+    console.log(`${client.prefix} ${name}`)
+
     const subcommand = interaction.options.getSubcommand();
     const invalidChannel = new EmbedBuilder().setTitle("Invalid Channel").setColor(bot2.Colors.DarkRed);
     switch (subcommand) {
@@ -42,7 +48,7 @@ export default new commandsHandler.command({
             })
             return;
         }
-        bot.chat(`/gc ${message}`)
+        bot.chat(`/gc ${name}: ${message}`)
         await interaction.editReply(`successfully send message ${message} in guild chat`);
         break;
       }
@@ -58,7 +64,7 @@ export default new commandsHandler.command({
           return;
         }
 
-        bot.chat(`/go ${message}`)
+        bot.chat(`/go ${name}: ${message}`)
         await interaction.editReply(`successfully send message ${message} in officer chat`);
         break;
       }
